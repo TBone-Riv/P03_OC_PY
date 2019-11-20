@@ -15,7 +15,6 @@ def main():
 
     player = model.Player(list_item)
 
-
     pygame.init()
     window = pygame.display.set_mode((DIMENSION_LABYRINTH, DIMENSION_LABYRINTH))
     running = True
@@ -34,6 +33,21 @@ def main():
 
             window.blit(view.Labyrinth(player.labyrinth), (0, 0))
             window.blit(*view.Player(player).blit())
+
+            if player.is_win is not None:
+                if player.is_win:
+                    print("""
+                    --------------------------------
+                                YOU WIN             
+                    --------------------------------
+                    """)
+                else:
+                    print("""
+                    --------------------------------
+                                YOU LOSE             
+                    --------------------------------
+                    """)
+                running = False
 
             pygame.display.update()
 

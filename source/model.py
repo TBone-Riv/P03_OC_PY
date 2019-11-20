@@ -21,6 +21,9 @@ class Player:
         self.set_labyrinth(list_item)
         self.set_position()
 
+        # Win condition
+        self.is_win = None
+
     # Iterable related method
     def __iter__(self):
         self.index = 0
@@ -83,10 +86,7 @@ class Player:
         """Check win condition"""
         # Check if itch guardian list element are in player list
         condition = all([item in self.list_item for item in list_item])
-        if condition:
-            print('You win')
-        else:
-            print('You lose')
+        self.is_win = True if condition else False
 
 
 class ActorMixin:
