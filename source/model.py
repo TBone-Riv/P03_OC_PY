@@ -81,7 +81,7 @@ class Player:
 
     def win_event(self, list_item):
         """Check win condition"""
-        # verifie que chaque elemant de la list du gardien est presant dans la list du joueur
+        # Check if itch guardian list element are in player list
         condition = all([item in self.list_item for item in list_item])
         if condition:
             print('You win')
