@@ -1,5 +1,5 @@
 # [Projet 03 "Aidez MacGyver à s'échapper !"](https://openclassrooms.com/fr/projects/156/assignment)
-openclassrooms DA - Python
+openclassrooms DA - Python 3.6.1
 
 The project is used to get python's basics and learn the fundamentals of a coding structure.
 
