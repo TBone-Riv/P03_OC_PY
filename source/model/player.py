@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# coding: utf-8
+"""Class Player from model"""
+
+
 class Player:
     """Core object from model"""
 
