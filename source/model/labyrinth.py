@@ -56,18 +56,15 @@ class Labyrinth:
         """Return random box coordinate """
 
         # Check if an accessible box exist
-        if [[x.is_valid for x in y] for y in self.matrix] ==\
-                [[False for _ in y] for y in self.matrix]:
+        if self.get_valid_matrix() == self.get_valid_matrix(is_false=True):
             raise Exception('No valid Box')
 
         # Get a first random box coordinate
-        line = randint(0, len(self.matrix) - 1)
-        column = randint(0, len(self.matrix[line]) - 1)
+        line, column = self.get_random_coordinate()
 
         # Repeat the accusation while box isn't accessible
-        while not self.matrix[line][column].is_valid:
-            line = randint(0, len(self.matrix) - 1)
-            column = randint(0, len(self.matrix[line]) - 1)
+        while not self.get_box(line, column).is_valid:
+            line, column = self.get_random_coordinate()
 
         return line, column
 
