@@ -48,7 +48,10 @@ class Player:
 
     def set_move(self, direction):
         """Set player movement"""
-        cardinal = {'north': (-1, 0), 'south': (1, 0), 'west': (0, -1), 'east': (0, 1)}
+        cardinal = {'north': (-1, 0),
+                    'south': (1, 0),
+                    'west': (0, -1),
+                    'east': (0, 1)}
         self.coordinate_line += cardinal[direction][0]
         self.coordinate_column += cardinal[direction][1]
 

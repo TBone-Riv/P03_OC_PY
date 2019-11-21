@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# coding: utf-8
+"""Class Actor from model"""
+
+
 class ActorMixin:
     """Mixin class for all actor-like object"""
 
@@ -5,8 +10,8 @@ class ActorMixin:
         self.name = name
 
     def event(self, game):
-        """Need to be overridden to call different Player methods in different condition"""
-        raise NotImplemented("'event' class is not overridden with {}".format(type(self)))
+        """Need to be overridden to call different Player methods"""
+        raise NotImplementedError()
 
 
 class Item(ActorMixin):

@@ -30,12 +30,13 @@ class Game:
     def set_actor_on_labyrinth(self, list_actor):
         """Take a list of actor and put them in a random box"""
         for actor in list_actor:
-            self.labyrinth.set_box_content(*self.labyrinth.get_valid_box(), actor)
+            self.labyrinth.\
+                set_box_content(*self.labyrinth.get_valid_box(), actor)
 
     def set_player_position(self, direction):
         """Handle player movement"""
         if self.labyrinth.get_valid_move(self.player.coordinate_line,
-                                         self.player.coordinate_line,
+                                         self.player.coordinate_column,
                                          direction):
             self.player.set_move(direction)
 
@@ -45,4 +46,5 @@ class Game:
     def set_win_condition(self, list_item):
         """Check win condition"""
         # Check if itch guardian list element are in player list
-        self.win_condition = bool(all([item in self.player for item in list_item]))
+        self.win_condition = \
+            bool(all([item in self.player for item in list_item]))
