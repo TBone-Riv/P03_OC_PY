@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# coding: utf-8
+"""Class Labyrinth from model"""
+
+
 from random import randint
 from source.model.box import Box
 import source.constants as constants
