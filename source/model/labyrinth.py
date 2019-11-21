@@ -1,5 +1,6 @@
 from random import randint
-from model.box import Box
+from source.model.box import Box
+import source.constants as constants
 
 
 class Labyrinth:
@@ -27,23 +28,7 @@ class Labyrinth:
     def build(self):
         """Build labyrinth from an external file"""
 
-        key = {"□": [],
-               "←": ["west"],
-               "↑": ["north"],
-               "→": ["east"],
-               "↓": ["south"],
-               "━": ["west", "east"],
-               "┃": ["north", "south"],
-               "┏": ["south", "east"],
-               "┓": ["south", "west"],
-               "┗": ["north", "east"],
-               "┛": ["north", "west"],
-               "┣": ["north", "south", "east"],
-               "┫": ["north", "south", "west"],
-               "┳": ["south", "west", "east"],
-               "┻": ["north", "west", "east"],
-               "╋": ["north", "south", "west", "east"]
-               }
+        key = constants.KEY
 
         with open(self.file, 'r', errors='ignore', encoding="UTF8") as file:
             read_lab = file.read()
