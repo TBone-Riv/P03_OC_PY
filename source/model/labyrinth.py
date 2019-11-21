@@ -72,7 +72,7 @@ class Labyrinth:
         """Check cardinal movement"""
         return self.get_box(line, column).get_direction(direction)
 
-    def event(self, player, box_position):
+    def call_event(self, player, line, column):
         """Call "Box.event" method if exist"""
-        if self.matrix[box_position[0]][box_position[1]].content is not None:
-            self.matrix[box_position[0]][box_position[1]].content.event(player)
+        if self.get_box(line, column).content is not None:
+            self.get_box(line, column).content.event(player)
