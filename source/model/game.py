@@ -25,6 +25,8 @@ class Game:
         self.set_actor_on_labyrinth(list_actor)
         self.player.set_random_position(self.labyrinth)
 
+        self.win_condition = None
+
     def set_actor_on_labyrinth(self, list_actor):
         """Take a list of actor and put them in a random box"""
         for actor in list_actor:
@@ -40,5 +42,7 @@ class Game:
         # Call "Box.event" method if exist
         self.labyrinth.call_event(self)
 
-    def set_win_condition(self):
-        pass
+    def set_win_condition(self, list_item):
+        """Check win condition"""
+        # Check if itch guardian list element are in player list
+        self.win_condition = bool(all([item in self.player for item in list_item]))
