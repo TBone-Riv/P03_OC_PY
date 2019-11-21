@@ -1,5 +1,11 @@
+#! /usr/bin/env python3
+# coding: utf-8
+"""Class Labyrinth from model"""
+
+
 from random import randint
-from model.box import Box
+from source.model.box import Box
+import source.constants as constants
 
 
 class Labyrinth:
@@ -16,6 +22,37 @@ class Labyrinth:
         """Take coordinate and return a box"""
         return self.matrix[line][column]
 
+    def get_valid_matrix(self, is_false=False):
+        """Return a matrix with a boolean for each box"""
+        # return a matrix of False if is_false is True
+        return [[x.is_valid if not is_false else False for x in y] for y in self.matrix]
+
+    def get_random_coordinate(self):
+        """Return random coordinate"""
+        line = randint(0, len(self.matrix) - 1)
+        column = randint(0, len(self.matrix[line]) - 1)
+        return line, column
+
+    def get_valid_box(self):
+        """Return random box coordinate """
+
+        # Check if an accessible box exist
+        if self.get_valid_matrix() == self.get_valid_matrix(is_false=True):
+            raise Exception('No valid Box')
+
+        # Get a first random box coordinate
+        line, column = self.get_random_coordinate()
+
+        # Repeat the accusation while box isn't accessible
+        while not self.get_box(line, column).is_valid:
+            line, column = self.get_random_coordinate()
+
+        return line, column
+
+    def get_valid_move(self, line, column, direction):
+        """Check cardinal movement"""
+        return self.get_box(line, column).get_direction(direction)
+
     def set_box_content(self, line, column, content):
         """Take coordinate and a content to assign to a box"""
         self.get_box(line, column).content = content
@@ -27,23 +64,7 @@ class Labyrinth:
     def build(self):
         """Build labyrinth from an external file"""
 
-        key = {"□": [],
-               "←": ["west"],
-               "↑": ["north"],
-               "→": ["east"],
-               "↓": ["south"],
-               "━": ["west", "east"],
-               "┃": ["north", "south"],
-               "┏": ["south", "east"],
-               "┓": ["south", "west"],
-               "┗": ["north", "east"],
-               "┛": ["north", "west"],
-               "┣": ["north", "south", "east"],
-               "┫": ["north", "south", "west"],
-               "┳": ["south", "west", "east"],
-               "┻": ["north", "west", "east"],
-               "╋": ["north", "south", "west", "east"]
-               }
+        key = constants.KEY
 
         with open(self.file, 'r', errors='ignore', encoding="UTF8") as file:
             read_lab = file.read()
@@ -56,30 +77,7 @@ class Labyrinth:
 
             self.matrix.append(list_wall)
 
-    def get_valid_box(self):
-        """Return random box coordinate """
-
-        # Check if an accessible box exist
-        if [[x.is_valid for x in y] for y in self.matrix] ==\
-                [[False for _ in y] for y in self.matrix]:
-            raise Exception('No valid Box')
-
-        # Get a first random box coordinate
-        line = randint(0, len(self.matrix) - 1)
-        column = randint(0, len(self.matrix[line]) - 1)
-
-        # Repeat the accusation while box isn't accessible
-        while not self.matrix[line][column].is_valid:
-            line = randint(0, len(self.matrix) - 1)
-            column = randint(0, len(self.matrix[line]) - 1)
-
-        return line, column
-
-    def valid_move(self, box_position, direction):
-        """Check cardinal movement"""
-        return getattr(self.matrix[box_position[0]][box_position[1]], direction)
-
-    def event(self, player, box_position):
+    def call_event(self, player, line, column):
         """Call "Box.event" method if exist"""
-        if self.matrix[box_position[0]][box_position[1]].content is not None:
-            self.matrix[box_position[0]][box_position[1]].content.event(player)
+        if self.get_box(line, column).content is not None:
+            self.get_box(line, column).content.event(player)
