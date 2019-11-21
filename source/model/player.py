@@ -34,6 +34,10 @@ class Player:
         self.index += 1
         return result
 
+    def get_position(self):
+        """Return player position"""
+        return self.coordinate_line, self.coordinate_column
+
     def set_position(self, line, column):
         """Set player position"""
         self.coordinate_line, self.coordinate_column = line, column
@@ -41,6 +45,12 @@ class Player:
     def set_random_position(self, labyrinth):
         """Set random position"""
         self.set_position(*labyrinth.get_valid_box())
+
+    def set_move(self, direction):
+        """Set player movement"""
+        cardinal = {'north': (-1, 0), 'south': (1, 0), 'west': (0, -1), 'east': (0, 1)}
+        self.coordinate_line += cardinal[direction][0]
+        self.coordinate_column += cardinal[direction][1]
 
     def append(self, item):
         """Add object to iterable variable and remove it from labyrinth"""

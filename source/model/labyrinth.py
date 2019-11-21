@@ -77,7 +77,8 @@ class Labyrinth:
 
             self.matrix.append(list_wall)
 
-    def call_event(self, player, line, column):
+    def call_event(self, game):
         """Call "Box.event" method if exist"""
+        line, column = game.player.get_position()
         if self.get_box(line, column).content is not None:
-            self.get_box(line, column).content.event(player)
+            self.get_box(line, column).content.event(game)

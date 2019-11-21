@@ -30,8 +30,15 @@ class Game:
         for actor in list_actor:
             self.labyrinth.set_box_content(*self.labyrinth.get_valid_box(), actor)
 
-    def set_player_position(self):
-        pass
+    def set_player_position(self, direction):
+        """Handle player movement"""
+        if self.labyrinth.get_valid_move(self.player.coordinate_line,
+                                         self.player.coordinate_line,
+                                         direction):
+            self.player.set_move(direction)
+
+        # Call "Box.event" method if exist
+        self.labyrinth.call_event(self)
 
     def set_win_condition(self):
         pass

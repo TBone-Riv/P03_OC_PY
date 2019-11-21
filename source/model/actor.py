@@ -4,7 +4,7 @@ class ActorMixin:
     def __init__(self, name: str):
         self.name = name
 
-    def event(self, player):
+    def event(self, game):
         """Need to be overridden to call different Player methods in different condition"""
         raise NotImplemented("'event' class is not overridden with {}".format(type(self)))
 
@@ -12,8 +12,9 @@ class ActorMixin:
 class Item(ActorMixin):
     """Collectible item"""
 
-    def event(self, player):
-        player.append(self)
+    def event(self, game):
+        game.player.append(self)
+        game.labyrinth.emptying_box(*game.player.get_position())
 
 
 class Guardian(ActorMixin):
@@ -23,5 +24,5 @@ class Guardian(ActorMixin):
         super().__init__(name)
         self.list_item = list_item
 
-    def event(self, player):
-        player.win_event(self.list_item)
+    def event(self, game):
+        game.player.win_event(self.list_item)
