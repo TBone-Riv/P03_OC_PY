@@ -7,7 +7,7 @@ from source.model.actor import Item
 
 
 class Player:
-    """Core object from model"""
+    """Player"""
 
     def __init__(self):
         # Position

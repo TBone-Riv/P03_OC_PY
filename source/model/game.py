@@ -3,3 +3,6 @@
 """Class Game from model"""
 
 
+class Game:
+    """Build all object and handle their interaction"""
+
