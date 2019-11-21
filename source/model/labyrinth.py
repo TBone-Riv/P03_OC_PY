@@ -68,9 +68,9 @@ class Labyrinth:
 
         return line, column
 
-    def valid_move(self, box_position, direction):
+    def get_valid_move(self, line, column, direction):
         """Check cardinal movement"""
-        return getattr(self.matrix[box_position[0]][box_position[1]], direction)
+        return self.get_box(line, column).get_direction(direction)
 
     def event(self, player, box_position):
         """Call "Box.event" method if exist"""
