@@ -1,17 +1,14 @@
 class Player:
     """Core object from model"""
 
-    def __init__(self, list_item: list):
+    def __init__(self):
+        # Position
+        self.coordinate_line = 0
+        self.coordinate_column = 0
 
         # Variable iterable related
         self.list_item = []
         self.index = 0
-
-        # Initialise labyrinth
-        self.labyrinth = Labyrinth()
-        self.box_position = None
-        self.set_labyrinth(list_item)
-        self.set_position()
 
         # Win condition
         self.is_win = None
@@ -28,21 +25,6 @@ class Player:
             raise StopIteration
         self.index += 1
         return result
-
-    def set_labyrinth(self, list_item):
-        """Set random position for all item"""
-        while 1:
-            box = choice(choice(self.labyrinth.matrix))
-            if box.is_valid:
-                box.content = Guardian('guardian', list_item)
-                break
-
-        for item in list_item:
-            while 1:
-                box = choice(choice(self.labyrinth.matrix))
-                if box.is_valid:
-                    box.content = item
-                    break
 
     def set_position(self):
         """Set random position for player"""
@@ -73,8 +55,3 @@ class Player:
 
         # Call "Box.event" method if exist
         self.labyrinth.event(self, self.box_position)
-
-    def win_event(self, list_item):
-        """Check win condition"""
-        # Check if itch guardian list element are in player list
-        self.is_win = bool(all([item in self.list_item for item in list_item]))
