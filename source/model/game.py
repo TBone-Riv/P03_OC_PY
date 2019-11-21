@@ -20,10 +20,15 @@ class Game:
         self.labyrinth = Labyrinth()
 
         list_item = [Item(i) for i in LIST_ITEM]
-        list_actor = list_item.append(Guardian("guardian", list_item))
+        list_actor = list_item + [Guardian("guardian", list_item)]
+
+        self.set_actor_on_labyrinth(list_actor)
+        self.player.set_random_position(self.labyrinth)
 
     def set_actor_on_labyrinth(self, list_actor):
-        pass
+        """Take a list of actor and put them in a random box"""
+        for actor in list_actor:
+            self.labyrinth.set_box_content(*self.labyrinth.get_valid_box(), actor)
 
     def set_player_position(self):
         pass
