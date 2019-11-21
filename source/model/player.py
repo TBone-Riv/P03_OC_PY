@@ -3,6 +3,9 @@
 """Class Player from model"""
 
 
+from source.model.actor import Item
+
+
 class Player:
     """Core object from model"""
 
@@ -47,19 +50,3 @@ class Player:
 
         # Adding item to the list and remove it from the matrix
         self.list_item.append(item)
-        self.labyrinth.matrix[self.box_position[0]][self.box_position[1]].content = None
-
-    def move_to(self, direction):
-        """Handle player movement"""
-        if self.labyrinth.valid_move(self.box_position, direction):
-            if direction == 'north':
-                self.box_position[0] += -1
-            elif direction == 'south':
-                self.box_position[0] += 1
-            elif direction == 'east':
-                self.box_position[1] += 1
-            else:
-                self.box_position[1] += -1
-
-        # Call "Box.event" method if exist
-        self.labyrinth.event(self, self.box_position)
