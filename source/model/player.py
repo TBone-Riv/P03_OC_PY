@@ -31,10 +31,13 @@ class Player:
         self.index += 1
         return result
 
-    def set_position(self):
-        """Set random position for player"""
-        line, column = self.labyrinth.get_valid_box()
-        self.box_position = [line, column]
+    def set_position(self, line, column):
+        """Set player position"""
+        self.coordinate_line, self.coordinate_column = line, column
+
+    def set_random_position(self, labyrinth):
+        """Set random position"""
+        self.set_position(*labyrinth.get_valid_box())
 
     def append(self, item):
         """Add object to iterable variable and remove it from labyrinth"""
