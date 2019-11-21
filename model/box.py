@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# coding: utf-8
+"""Class Box from model"""
+
+
 class Box:
     """Define structure of labyrinth"""
 
