@@ -9,9 +9,9 @@ from source.constants import *
 class Player:
     """Format blit argument to handel player position"""
 
-    def __init__(self, player):
-        self.x = player.box_position[1] * DIMENSION_SPRITE
-        self.y = player.box_position[0] * DIMENSION_SPRITE
+    def __init__(self, line, column):
+        self.x = column * DIMENSION_SPRITE
+        self.y = line * DIMENSION_SPRITE
 
     def blit(self):
         return pygame.image.load(RESOURCE_PATH + "player.png").convert_alpha(), (self.x, self.y)

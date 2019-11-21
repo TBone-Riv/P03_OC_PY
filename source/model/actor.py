@@ -25,4 +25,4 @@ class Guardian(ActorMixin):
         self.list_item = list_item
 
     def event(self, game):
-        game.player.win_event(self.list_item)
+        game.set_win_condition(self.list_item)
