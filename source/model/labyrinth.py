@@ -30,6 +30,12 @@ class Labyrinth:
         # return a matrix of False if is_false is True
         return [[x.is_valid if not is_false else False for x in y] for y in self.matrix]
 
+    def get_random_coordinate(self):
+        """Return random coordinate"""
+        line = randint(0, len(self.matrix) - 1)
+        column = randint(0, len(self.matrix[line]) - 1)
+        return line, column
+
     def build(self):
         """Build labyrinth from an external file"""
 
