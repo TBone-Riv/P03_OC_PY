@@ -25,6 +25,11 @@ class Labyrinth:
         """Take coordinate and set a box content to None"""
         self.get_box(line, column).content = None
 
+    def get_valid_matrix(self, is_false=False):
+        """Return a matrix with a boolean for each box"""
+        # return a matrix of False if is_false is True
+        return [[x.is_valid if not is_false else False for x in y] for y in self.matrix]
+
     def build(self):
         """Build labyrinth from an external file"""
 
