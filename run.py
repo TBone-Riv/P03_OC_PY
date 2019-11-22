@@ -27,7 +27,6 @@ if __name__ == '__main__':
                 if event.key in key_arrow.keys():
                     direction = key_arrow[event.key]
                     game.set_player_position(direction)
-                    print(game.player.get_position())
 
             window.blit(view.Labyrinth(game.labyrinth), (0, 0))
             window.blit(*view.Player(*game.player.get_position()).blit())

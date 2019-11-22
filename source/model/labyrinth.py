@@ -25,12 +25,8 @@ class Labyrinth:
     def get_valid_matrix(self, is_false=False):
         """Return a matrix with a boolean for each box"""
         # return a matrix of False if is_false is True
-<<<<<<< HEAD
         return [[x.is_valid if not is_false else False for x in y]
                 for y in self.matrix]
-=======
-        return [[x.is_valid if not is_false else False for x in y] for y in self.matrix]
->>>>>>> 46b82a0d0802b5a389fa727d3c1ce91d423998dd
 
     def get_random_coordinate(self):
         """Return random coordinate"""
@@ -82,15 +78,8 @@ class Labyrinth:
 
             self.matrix.append(list_wall)
 
-<<<<<<< HEAD
     def call_event(self, game):
         """Call "Box.event" method if exist"""
         line, column = game.player.get_position()
         if self.get_box(line, column).content is not None:
             self.get_box(line, column).content.event(game)
-=======
-    def call_event(self, player, line, column):
-        """Call "Box.event" method if exist"""
-        if self.get_box(line, column).content is not None:
-            self.get_box(line, column).content.event(player)
->>>>>>> 46b82a0d0802b5a389fa727d3c1ce91d423998dd
