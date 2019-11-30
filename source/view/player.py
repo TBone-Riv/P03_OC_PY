@@ -32,10 +32,12 @@ class Player:
 
         background.blit(image, blit_coordinate)
 
-        image = pygame.transform.scale(background, (int(const.DIMENSION_SPRITE / 2),
-                                                    int(const.DIMENSION_SPRITE / 2)))
+        image = pygame.transform.scale(background,
+                                       (int(const.DIMENSION_SPRITE / 2),
+                                        int(const.DIMENSION_SPRITE / 2)))
 
-        background = pygame.Surface((const.DIMENSION_SPRITE, const.DIMENSION_SPRITE),
+        background = pygame.Surface((const.DIMENSION_SPRITE,
+                                     const.DIMENSION_SPRITE),
                                     pygame.SRCALPHA)
 
         blit_coordinate = (int(const.DIMENSION_SPRITE / 4),
@@ -48,4 +50,3 @@ class Player:
         player = self.get_image()
 
         return player, (self.x, self.y)
-
