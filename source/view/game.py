@@ -16,13 +16,14 @@ class Game:
         window.blit(*Player(*game.player.get_position()).blit())
 
         font = pygame.font.Font(None, 24)
-        text = font.render("You have :", 1, (0, 0, 0))
-
-        window.blit(text, (const.DIMENSION_LABYRINTH + 10, 10))
+        text1 = font.render("Use arrow keys to get all item", 1, (0, 0, 0))
+        text2 = font.render("You have :", 1, (0, 0, 0))
+        window.blit(text1, (const.DIMENSION_LABYRINTH + 10, 10))
+        window.blit(text2, (const.DIMENSION_LABYRINTH + 10, 30))
         for indices, item in enumerate(game.player):
             window.blit(self.get_image(item.name + '.png'),
                         (const.DIMENSION_LABYRINTH + 20,
-                         indices * const.DIMENSION_SPRITE + 40))
+                         indices * const.DIMENSION_SPRITE + 70))
 
     def get_image(self, name):
         image = pygame.image.load(const.RESOURCE_PATH + name)
